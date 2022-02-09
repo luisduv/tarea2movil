@@ -1,22 +1,11 @@
-import 'react-native-gesture-handler'
-
-import React from 'react'
-import MyDrawer from './MyDrawer'
-//import Prueba from './assets/pages/prueba'
-import { Component } from 'react/cjs/react.production.min'
+import * as React from 'react';
 import { Button, View, Text, Image, StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
 
-const Drawer = createDrawerNavigator();
 
-class App extends Component{
-
-
-
-  
- HomeScreen=({ navigation })=> {
+function HomeScreen({ navigation }) {
   
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -37,7 +26,7 @@ class App extends Component{
   );
 }
 
- NotificationsScreen=({ navigation })=> {
+function NotificationsScreen({ navigation }) {
   
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -48,7 +37,7 @@ class App extends Component{
   );
 }
 
- TraductorScreen=({ navigation }) =>{
+function TraductorScreen({ navigation }) {
   
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -60,7 +49,7 @@ class App extends Component{
 }
 
 
- TablaMultiplicarScreen=({ navigation }) =>{
+function TablaMultiplicarScreen({ navigation }) {
 
  
   
@@ -74,7 +63,7 @@ class App extends Component{
 }
 
 
- VideoScreen({ navigation }) {
+function VideoScreen({ navigation }) {
   
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -94,11 +83,23 @@ class App extends Component{
 
 
 
-  render(){
-  return(
-    <MyDrawer/>
-  )}
+const Drawer = createDrawerNavigator();
+
+
+
+export default function App() {
+
+ 
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Sumadora" component={NotificationsScreen} />
+        <Drawer.Screen name="Traductor De Numeros" component={TraductorScreen} />
+        <Drawer.Screen name="Tabla Multiplicar" component={TablaMultiplicarScreen} />
+        <Drawer.Screen name="video Explicativo" component={VideoScreen} />
+
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
 }
-
-
-export default App;
