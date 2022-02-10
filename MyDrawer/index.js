@@ -4,6 +4,7 @@ import { Button, View, Text, Image, StyleSheet, TouchableHighlight } from 'react
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
+import ReactPlayer from 'react-player';
 
 const styles = StyleSheet.create({
   container: {
@@ -165,6 +166,12 @@ function VideoScreen({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {/* <Button onPress={() => navigation.goBack()} title="Go back home" /> */}
       <Text>Video Explicativo</Text>
+
+      <ReactPlayer
+      url={require('../assets/video/2022-02-09 18-29-52.mkv')}
+      controls
+      >
+      </ReactPlayer>
     </View>
   );
 }
