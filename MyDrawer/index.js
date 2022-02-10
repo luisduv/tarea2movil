@@ -5,6 +5,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
 import ReactPlayer from 'react-player';
+import NumeroALetras from '../assets/pages/Conver';
+import convertir from '../assets/pages/Conver';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,10 +21,10 @@ const styles = StyleSheet.create({
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' , ...styles.container}}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', ...styles.container }}>
       {/* aqui lo que va en el medio de la pantalla */}
       <Image style={styles.stretch}
-      source={source}
+        source={source}
       />
       <br />
       <Text>Nombres:</Text>
@@ -104,21 +106,44 @@ function NotificationsScreen({ navigation }) {
 
 
 function TraductorScreen({ navigation }) {
-  const [statetra, setStatetra] = React.useState()
+  const [statetra, setStatetra] = useState(0)
+  const [numWords, setNumWords] = useState('')
+
+  
+  const handleOnEditting = () => {
+    console.log('dsds')
+    
+    const num = NumeroALetras(statetra)
+    setNumWords( num );
+  }
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Traductor de numeros</Text><br />
       <Text>Numero a Traducir</Text>
       <TextInput
-       style={{ height: 40,borderColor: 'black',borderWidth: 1}}
-       placeholder='numero a Traducir'
-       placeholderTextColor="grey"
-       value={statetra}
-       onChangeText={(value) => { setStatetra(value) }}
-       autoCorrect={false}
-       autoCapitalize='none'
+        style={{ height: 40, borderColor: 'black', borderWidth: 1 }}
+        placeholder='numero a Traducir'
+        placeholderTextColor="grey"
+        value={statetra}
+        onChangeText={ (value) => setStatetra(Number(value)) }
+        autoCorrect={false}
+        autoCapitalize='none'
       ></TextInput>
+
+       <Text>{numWords + 'klk'}</Text> 
+
+       <TouchableHighlight
+           onPress={handleOnEditting}
+      >
+        <Text>Get number to word</Text>
+      </TouchableHighlight>
+
+      
+
+
+
+
     </View>
   );
 }
@@ -139,14 +164,14 @@ function TraductorScreen({ navigation }) {
 
 function TablaMultiplicarScreen({ navigation }) {
   const [statenum, setStatenum] = React.useState()
-  const MultiplicationTable = ({ totalLines, num }) => [...Array(totalLines).keys()].map(x => <Text>{num} X {x} = { Number(num) * x } </Text> );
+  const MultiplicationTable = ({ totalLines, num }) => [...Array(totalLines).keys()].map(x => <Text>{num} X {x} = {Number(num) * x} </Text>);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {/* <Button onPress={() => navigation.goBack()} title="Go back home" /> */}
       <Text>Tabla Multiplicar</Text><br /><br />
       <Text>Digita el numero a multiplicar </Text>
       <TextInput
-        style={{  height: 40,borderColor: 'black',borderWidth: 1}}
+        style={{ height: 40, borderColor: 'black', borderWidth: 1 }}
         placeholder='Numero a Multiplicar'
         placeholderTextColor="grey"
         value={statenum}
@@ -156,7 +181,7 @@ function TablaMultiplicarScreen({ navigation }) {
       />
       <br /><br />
       {/* { [1,2,3,4,5,6,7,8,9,10,11,12,13].map(x => <Text>{statenum} X {x} = { Number(statenum) * x }</Text> )  } */}
-      <MultiplicationTable totalLines={14} num={statenum}/>
+      <MultiplicationTable totalLines={14} num={statenum} />
     </View>
   );
 }
@@ -168,8 +193,8 @@ function VideoScreen({ navigation }) {
       <Text>Video Explicativo</Text>
 
       <ReactPlayer
-      url={require('../assets/video/2022-02-09 18-29-52.mkv')}
-      controls
+        url={require('../assets/video/2022-02-09 18-29-52.mkv')}
+        controls
       >
       </ReactPlayer>
     </View>
